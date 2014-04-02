@@ -2,13 +2,39 @@
   <head>
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
     <script src="jquery.countdown.min.js"></script>
+    <style>
+      #counter {
+        font-size: 16pt;
+        font-family: tahoma, sans-serif;
+        text-align: center;
+      }
+
+      .container {
+        width: 400px;
+      }
+
+      #counter span {
+        background-color: rgb(234, 96, 69);
+        color: white;
+        padding-left: 3px;
+        padding-right: 3px;
+        border-radius: 5px;
+      }
+    </style>
   </head>
   <body>
-    <div id="counter"></div>
+    <div class="container">
+      <div id="counter"></div>
+    </div>
     <script TYPE="text/javascript">
-      $('#counter').countdown('2014/06/09 08:45:00', function(event) {
-         $(this).html(event.strftime('%w weeks %d days %H:%M:%S'));
-       });
+      $('#counter').countdown('2014/06/09 08:45:00').on('update.countdown', function(event) {
+         var $this = $(this).html(event.strftime(''
+             + '<span>%-w</span> week%!w '
+             + '<span>%-d</span> day%!d '
+             + '<span>%H</span> hr '
+             + '<span>%M</span> min '
+             + '<span>%S</span> sec'));
+      });
     </script>
   </body>
 </html>
